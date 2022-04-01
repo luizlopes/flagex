@@ -1,0 +1,13 @@
+###
+GET http://localhost:4000/feature_flags/teste?ip=xpto&channel=website&subchannel=android
+
+
+### POST http://localhost:4000/segments/:segment_name/feature_flags/:feature_name
+POST http://localhost:4000/feature_flags/teste
+Content-Type: application/json
+
+{
+  "ip": "127.0.0.1",
+  "channel": "website",
+  "subchannel": "android"
+}
