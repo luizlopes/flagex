@@ -5,11 +5,11 @@ defmodule Flagex.FeatureFlags.ProcessorTest do
   alias Flagex.{FeatureFlag, Repo}
 
   describe "call/2" do
-    test "when has no input, return feature flag result" do
+    test "when params is empty, return feature flag result" do
       {:ok, feature_flag} =
         %{name: "my_test", status: false} |> FeatureFlag.changeset() |> Repo.insert()
 
-      result = Processor.call(feature_flag)
+      result = Processor.call(feature_flag, %{})
 
       assert %Result{name: "my_test", status: false, active: true, errors: false}
     end
