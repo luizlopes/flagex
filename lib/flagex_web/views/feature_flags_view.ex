@@ -1,10 +1,10 @@
 defmodule FlagexWeb.FeatureFlagsView do
   use FlagexWeb, :view
 
-  def render("show.json", feature_flag) do
+  def render("show.json", %{feature_flag: feature_flag}) do
     %{
       feature: feature_flag.name,
-      status: false
+      status: feature_flag.status
     }
   end
 end

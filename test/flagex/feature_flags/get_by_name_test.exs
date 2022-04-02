@@ -1,12 +1,13 @@
 defmodule Flagex.FeatureFlags.GetByNameTest do
   use Flagex.DataCase, async: true
 
-  alias Flagex.{FeatureFlag, Repo}
+  alias Flagex.{Error, FeatureFlag, Repo}
   alias Flagex.FeatureFlags.GetByName
 
   describe "call/1" do
     test "when name doenst exist, returns an error" do
-      assert {:error, :not_found} == GetByName.call("some_name")
+      assert {:error, %Error{result: "not found", status: :not_found}} ==
+               GetByName.call("some_name")
     end
 
     test "when name doenst exist, returns a tuple" do

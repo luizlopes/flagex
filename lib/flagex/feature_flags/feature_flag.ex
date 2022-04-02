@@ -3,6 +3,7 @@ defmodule Flagex.FeatureFlag do
   import Ecto.Changeset
 
   @required_params [:name, :status]
+  @derive {Jason.Encoder, only: @required_params}
 
   schema "feature_flags" do
     field :name, :string

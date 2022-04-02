@@ -1,11 +1,15 @@
 defmodule FlagexWeb.FeatureFlagsController do
   use FlagexWeb, :controller
 
-  def show(conn, %{"name" => name}) do
-    feature_flag = %{name: name}
+  alias Flagex.FeatureFlags.GetByName
 
-    conn
-    |> put_status(:ok)
-    |> render("show.json", feature_flag)
+  action_fallback FlagexWeb.FallbackController
+
+  def show(conn, %{"name" => name}) do
+    with {:ok, feature_flag} <- GetByName.call(name) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", feature_flag: feature_flag)
+    end
   end
 end
