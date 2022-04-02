@@ -14,7 +14,12 @@ defmodule FlagexWeb.FeatureFlagsControllerTest do
         |> post(Routes.feature_flags_path(conn, :show, "my_test", %{}))
         |> json_response(:ok)
 
-      assert %{"feature" => "my_test", "status" => false} = response
+      assert %{
+               "status" => false,
+               "active" => true,
+               "errors" => false,
+               "name" => "my_test"
+             } = response
     end
 
     test "when feature flag doesnt exist, returns an error response", %{conn: conn} do

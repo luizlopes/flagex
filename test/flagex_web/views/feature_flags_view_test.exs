@@ -4,21 +4,13 @@ defmodule FlagexWeb.FeatureFlagsViewTest do
   import Phoenix.View
 
   alias FlagexWeb.FeatureFlagsView
-  alias Flagex.{FeatureFlag, Repo}
+  alias Flagex.FeatureFlags.Result
 
   test "renders show.json" do
-    params = %{name: "my_test", status: false}
+    result = %Result{name: "my_test", status: true, active: true, errors: false}
 
-    {:ok, feature_flag} =
-      params
-      |> FeatureFlag.changeset()
-      |> Repo.insert()
+    response = render(FeatureFlagsView, "show.json", %{result: result})
 
-    response = render(FeatureFlagsView, "show.json", %{feature_flag: feature_flag})
-
-    assert response == %{
-             feature: "my_test",
-             status: false
-           }
+    assert response == %{status: true, active: true, errors: false, name: "my_test"}
   end
 end
