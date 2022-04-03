@@ -21,7 +21,6 @@ defmodule Flagex.Factory do
   def feature_flag_option_params_factory do
     %{
       "description" => "mobile",
-      "status" => "true",
       "active" => "true",
       "feature_flag_id" => 1
     }

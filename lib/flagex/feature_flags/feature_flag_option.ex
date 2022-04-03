@@ -4,12 +4,11 @@ defmodule Flagex.FeatureFlagOption do
 
   alias Flagex.FeatureFlag
 
-  @required_params [:description, :status, :active, :feature_flag_id]
+  @required_params [:description, :active, :feature_flag_id]
   @derive {Jason.Encoder, only: @required_params}
 
   schema "feature_flag_options" do
     field :description, :string
-    field :status, :boolean
     field :active, :boolean
 
     belongs_to :feature_flag, FeatureFlag

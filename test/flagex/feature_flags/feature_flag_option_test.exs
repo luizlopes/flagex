@@ -35,7 +35,6 @@ defmodule Flagex.FeatureFlagOptionTest do
 
       assert errors_on(response) == %{
                description: ["can't be blank"],
-               status: ["can't be blank"],
                active: ["can't be blank"],
                feature_flag_id: ["can't be blank"]
              }
