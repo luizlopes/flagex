@@ -11,7 +11,7 @@ defmodule Flagex.FeatureFlags.ProcessorTest do
 
       result = Processor.call(feature_flag, %{})
 
-      assert %Result{name: "my_test", status: false, active: true, errors: false}
+      assert %Result{name: "my_test", status: false, active: true, errors: false} = result
     end
   end
 end
