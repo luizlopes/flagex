@@ -1,8 +1,8 @@
-defmodule Flagex.FeatureFlags.GetByNameTest do
+defmodule Flagex.FeatureFlags.Query.GetByNameTest do
   use Flagex.DataCase, async: true
 
   alias Flagex.{Error, FeatureFlag, Repo}
-  alias Flagex.FeatureFlags.GetByName
+  alias Flagex.FeatureFlags.Query.GetByName
 
   describe "call/1" do
     test "when name doenst exist, returns an error" do
