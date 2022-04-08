@@ -2,16 +2,19 @@ defmodule Flagex.FeatureFlagOption do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Flagex.FeatureFlag
+  alias Flagex.{FeatureFlag, FeatureFlagOptionRule}
 
-  @required_params [:description, :active, :feature_flag_id]
+  @required_params [:description, :active, :status, :feature_flag_id]
   @derive {Jason.Encoder, only: @required_params}
 
   schema "feature_flag_options" do
     field :description, :string
     field :active, :boolean
+    field :status, :boolean
 
     belongs_to :feature_flag, FeatureFlag
+
+    has_many :feature_flag_option_rules, FeatureFlagOptionRule
 
     timestamps()
   end

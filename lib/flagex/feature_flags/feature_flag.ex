@@ -9,6 +9,8 @@ defmodule Flagex.FeatureFlag do
     field :name, :string
     field :status, :boolean
 
+    has_many :feature_flag_options, Flagex.FeatureFlagOption
+
     timestamps()
   end
 

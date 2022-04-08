@@ -1,7 +1,12 @@
 defmodule Flagex.Factory do
   use ExMachina.Ecto, repo: Flagex.Repo
 
-  alias Flagex.{FeatureFlag, FeatureFlagOption, FeatureFlagOptionRule}
+  alias Flagex.{
+    FeatureFlag,
+    FeatureFlagOption,
+    FeatureFlagOptionRule,
+    FeatureFlagOptionRuleCondition
+  }
 
   def feature_flag_params_factory do
     %{
@@ -58,6 +63,16 @@ defmodule Flagex.Factory do
       "description" => "payload body",
       "condition" => "1 == 1",
       "feature_flag_option_rule_id" => 1
+    }
+  end
+
+  def feature_flag_option_rule_condition_factory do
+    %FeatureFlagOptionRuleCondition{
+      active: true,
+      description: "payload body",
+      condition: "1==1",
+      id: 100_010_100_001,
+      feature_flag_option_rule_id: 1_010_100_001
     }
   end
 end

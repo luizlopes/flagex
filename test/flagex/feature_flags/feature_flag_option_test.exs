@@ -9,7 +9,11 @@ defmodule Flagex.FeatureFlagOptionTest do
     test "when all params are valid, returns a valid changeset" do
       feature_flag = build(:feature_flag)
 
-      params = build(:feature_flag_option_params, %{"feature_flag_id" => feature_flag.id})
+      params =
+        build(:feature_flag_option_params, %{
+          "status" => false,
+          "feature_flag_id" => feature_flag.id
+        })
 
       assert %Ecto.Changeset{valid?: true} = FeatureFlagOption.changeset(params)
     end
@@ -20,7 +24,8 @@ defmodule Flagex.FeatureFlagOptionTest do
       params =
         build(:feature_flag_option_params, %{
           "description" => "four",
-          "feature_flag_id" => feature_flag.id
+          "feature_flag_id" => feature_flag.id,
+          "status" => false
         })
 
       response = FeatureFlagOption.changeset(params)
@@ -36,6 +41,7 @@ defmodule Flagex.FeatureFlagOptionTest do
       assert errors_on(response) == %{
                description: ["can't be blank"],
                active: ["can't be blank"],
+               status: ["can't be blank"],
                feature_flag_id: ["can't be blank"]
              }
     end
