@@ -1,5 +1,5 @@
-defmodule Flagex.FeatureFlag.RuleProcessor do
-  alias Flagex.FeatureFlag.{ConditionProcessor}
+defmodule Flagex.FeatureFlag.Processor.Rule do
+  alias Flagex.FeatureFlag.Processor.Condition, as: ConditionProcessor
   alias Flagex.FeatureFlag.Schema.{Rule, Condition}
 
   @default_result {:ok, false}

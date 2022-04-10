@@ -1,5 +1,6 @@
-defmodule Flagex.FeatureFlag.Processor do
-  alias Flagex.FeatureFlag.{OptionProcessor, Result}
+defmodule Flagex.FeatureFlag.Processor.Flag do
+  alias Flagex.FeatureFlag.Result
+  alias Flagex.FeatureFlag.Processor.Option, as: OptionProcessor
   alias Flagex.FeatureFlag.Schema.{Flag, Option}
 
   def call(

@@ -1,8 +1,8 @@
-defmodule Flagex.FeatureFlag.OptionProcessorTest do
+defmodule Flagex.FeatureFlag.Processor.OptionTest do
   use Flagex.DataCase
   import Flagex.Factory
 
-  alias Flagex.FeatureFlag.OptionProcessor
+  alias Flagex.FeatureFlag.Processor.Option, as: OptionProcessor
 
   describe "call/2" do
     test "when option has no rules, returns false" do

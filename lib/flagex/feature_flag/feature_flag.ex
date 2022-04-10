@@ -1,5 +1,5 @@
 defmodule Flagex.FeatureFlag do
-  alias Flagex.FeatureFlag.Processor
+  alias Flagex.FeatureFlag.Processor.Flag, as: FlagProcessor
   alias Flagex.FeatureFlag.Query.GetByName
   alias Flagex.FeatureFlag.Schema.Flag
 
@@ -9,7 +9,7 @@ defmodule Flagex.FeatureFlag do
   end
 
   defp do_process({:ok, %Flag{} = feature_flag}, params) do
-    {:ok, Processor.call(feature_flag, params)}
+    {:ok, FlagProcessor.call(feature_flag, params)}
   end
 
   defp do_process(error, _params), do: error

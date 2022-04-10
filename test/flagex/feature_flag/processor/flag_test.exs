@@ -1,14 +1,15 @@
-defmodule Flagex.FeatureFlag.ProcessorTest do
+defmodule Flagex.FeatureFlag.Processor.FlagTest do
   use Flagex.DataCase
   import Flagex.Factory
 
-  alias Flagex.FeatureFlag.{Result, Processor}
+  alias Flagex.FeatureFlag.Result
+  alias Flagex.FeatureFlag.Processor.Flag, as: FlagProcessor
 
   describe "call/2" do
     test "when params is empty, return feature flag result" do
       feature_flag = build(:flag, status: false)
 
-      result = Processor.call(feature_flag, %{})
+      result = FlagProcessor.call(feature_flag, %{})
 
       assert %Result{name: "my_test", status: false, active: true, errors: false} = result
     end
@@ -16,7 +17,7 @@ defmodule Flagex.FeatureFlag.ProcessorTest do
     test "when params is filled and FeatureFlag has no options, return feature flag result" do
       feature_flag = build(:flag, status: false)
 
-      result = Processor.call(feature_flag, %{"channel" => "website"})
+      result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
       assert %Result{name: "my_test", status: false, active: true, errors: false} = result
     end
@@ -27,7 +28,7 @@ defmodule Flagex.FeatureFlag.ProcessorTest do
       option = build(:option, status: true, rules: [rule])
       feature_flag = build(:flag, status: false, options: [option])
 
-      result = Processor.call(feature_flag, %{"channel" => "website"})
+      result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
       assert %Result{name: "my_test", status: true, active: true, errors: false} = result
     end
@@ -36,7 +37,7 @@ defmodule Flagex.FeatureFlag.ProcessorTest do
       option = build(:option, status: true)
       feature_flag = build(:flag, status: false, options: [option])
 
-      result = Processor.call(feature_flag, %{"channel" => "website"})
+      result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
       assert %Result{name: "my_test", status: false, active: true, errors: false} = result
     end
