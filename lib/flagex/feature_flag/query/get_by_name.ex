@@ -1,4 +1,4 @@
-defmodule Flagex.FeatureFlags.Query.GetByName do
+defmodule Flagex.FeatureFlag.Query.GetByName do
   import Ecto.Query
 
   alias Flagex.{Error, Repo}

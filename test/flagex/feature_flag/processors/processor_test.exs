@@ -1,8 +1,8 @@
-defmodule Flagex.FeatureFlags.ProcessorTest do
+defmodule Flagex.FeatureFlag.ProcessorTest do
   use Flagex.DataCase
   import Flagex.Factory
 
-  alias Flagex.FeatureFlags.{Result, Processor}
+  alias Flagex.FeatureFlag.{Result, Processor}
 
   describe "call/2" do
     test "when params is empty, return feature flag result" do

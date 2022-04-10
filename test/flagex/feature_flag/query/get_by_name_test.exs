@@ -1,8 +1,8 @@
-defmodule Flagex.FeatureFlags.Query.GetByNameTest do
+defmodule Flagex.FeatureFlag.Query.GetByNameTest do
   use Flagex.DataCase, async: true
 
   alias Flagex.{Error, Repo}
-  alias Flagex.FeatureFlags.Query.GetByName
+  alias Flagex.FeatureFlag.Query.GetByName
   alias Flagex.FeatureFlag.Schema.Flag
 
   describe "call/1" do

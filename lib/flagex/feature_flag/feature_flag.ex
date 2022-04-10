@@ -1,6 +1,6 @@
-defmodule Flagex.FeatureFlags do
-  alias Flagex.FeatureFlags.Processor
-  alias Flagex.FeatureFlags.Query.GetByName
+defmodule Flagex.FeatureFlag do
+  alias Flagex.FeatureFlag.Processor
+  alias Flagex.FeatureFlag.Query.GetByName
   alias Flagex.FeatureFlag.Schema.Flag
 
   def process(feature_flag_name, params) do

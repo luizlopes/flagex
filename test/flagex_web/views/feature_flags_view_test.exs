@@ -4,7 +4,7 @@ defmodule FlagexWeb.FeatureFlagsViewTest do
   import Phoenix.View
 
   alias FlagexWeb.FeatureFlagsView
-  alias Flagex.FeatureFlags.Result
+  alias Flagex.FeatureFlag.Result
 
   test "renders show.json" do
     result = %Result{name: "my_test", status: true, active: true, errors: false}

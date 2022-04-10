@@ -1,4 +1,4 @@
-defmodule Flagex.FeatureFlags.ConditionProcessor do
+defmodule Flagex.FeatureFlag.ConditionProcessor do
   alias Flagex.FeatureFlag.Schema.Condition
 
   def call(
