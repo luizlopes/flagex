@@ -1,8 +1,8 @@
-defmodule Flagex.FeatureFlagOptionRule do
+defmodule Flagex.FeatureFlag.Schema.Rule do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Flagex.{FeatureFlagOption, FeatureFlagOptionRuleCondition}
+  alias Flagex.FeatureFlag.Schema.{Option, Condition}
 
   @required_params [:description, :active, :feature_flag_option_id]
   @derive {Jason.Encoder, only: @required_params}
@@ -11,15 +11,16 @@ defmodule Flagex.FeatureFlagOptionRule do
     field :description, :string
     field :active, :boolean
 
-    belongs_to :feature_flag_option, FeatureFlagOption
+    belongs_to :feature_flag_option, Option
 
-    has_many :feature_flag_option_rule_conditions, FeatureFlagOptionRuleCondition
+    has_many :conditions, Condition, foreign_key: :feature_flag_option_rule_id, references: :id
+    # has_many :options, Option, foreign_key: :feature_flag_id, references: :id
 
     timestamps()
   end
 
   def changeset(params) do
-    %Flagex.FeatureFlagOptionRule{}
+    %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:description, min: 5)

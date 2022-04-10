@@ -6,7 +6,7 @@ defmodule Flagex.FeatureFlags.OptionProcessorTest do
 
   describe "call/2" do
     test "when option has no rules, returns false" do
-      option = build(:feature_flag_option, status: true)
+      option = build(:option, status: true)
 
       result = OptionProcessor.call(option, %{})
 

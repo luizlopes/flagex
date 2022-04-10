@@ -1,6 +1,8 @@
-defmodule Flagex.FeatureFlag do
+defmodule Flagex.FeatureFlag.Schema.Flag do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Flagex.FeatureFlag.Schema.Option
 
   @required_params [:name, :status]
   @derive {Jason.Encoder, only: @required_params}
@@ -9,13 +11,13 @@ defmodule Flagex.FeatureFlag do
     field :name, :string
     field :status, :boolean
 
-    has_many :feature_flag_options, Flagex.FeatureFlagOption
+    has_many :options, Option, foreign_key: :feature_flag_id, references: :id
 
     timestamps()
   end
 
   def changeset(params) do
-    %Flagex.FeatureFlag{}
+    %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:name, min: 5)

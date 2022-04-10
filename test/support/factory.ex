@@ -1,38 +1,33 @@
 defmodule Flagex.Factory do
   use ExMachina.Ecto, repo: Flagex.Repo
 
-  alias Flagex.{
-    FeatureFlag,
-    FeatureFlagOption,
-    FeatureFlagOptionRule,
-    FeatureFlagOptionRuleCondition
-  }
+  alias Flagex.FeatureFlag.Schema.{Flag, Option, Rule, Condition}
 
-  def feature_flag_params_factory do
+  def flag_params_factory do
     %{
       "name" => "my_test",
       "status" => "false"
     }
   end
 
-  def feature_flag_factory do
-    %FeatureFlag{
+  def flag_factory do
+    %Flag{
       name: "my_test",
       status: true,
       id: 100_001
     }
   end
 
-  def feature_flag_option_params_factory do
+  def option_params_factory do
     %{
       "description" => "mobile",
       "active" => "true",
-      "feature_flag_id" => 1
+      "flag_id" => 1
     }
   end
 
-  def feature_flag_option_factory do
-    %FeatureFlagOption{
+  def option_factory do
+    %Option{
       active: true,
       description: "mobile",
       id: 10_100_001,
@@ -40,7 +35,7 @@ defmodule Flagex.Factory do
     }
   end
 
-  def feature_flag_option_rule_params_factory do
+  def rule_params_factory do
     %{
       "description" => "channel is mobile",
       "active" => "true",
@@ -48,8 +43,8 @@ defmodule Flagex.Factory do
     }
   end
 
-  def feature_flag_option_rule_factory do
-    %FeatureFlagOptionRule{
+  def rule_factory do
+    %Rule{
       active: true,
       description: "payload body",
       id: 1_010_100_001,
@@ -57,7 +52,7 @@ defmodule Flagex.Factory do
     }
   end
 
-  def feature_flag_option_rule_condition_params_factory do
+  def condition_params_factory do
     %{
       "active" => "true",
       "description" => "payload body",
@@ -66,8 +61,8 @@ defmodule Flagex.Factory do
     }
   end
 
-  def feature_flag_option_rule_condition_factory do
-    %FeatureFlagOptionRuleCondition{
+  def condition_factory do
+    %Condition{
       active: true,
       description: "payload body",
       condition: "1==1",

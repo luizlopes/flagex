@@ -1,13 +1,12 @@
 defmodule Flagex.FeatureFlags.RuleProcessor do
-  alias Flagex.{FeatureFlagOptionRuleCondition, FeatureFlagOptionRule}
   alias Flagex.FeatureFlags.{ConditionProcessor}
+  alias Flagex.FeatureFlag.Schema.{Rule, Condition}
 
   @default_result {:ok, false}
 
   def call(
-        %FeatureFlagOptionRule{
-          feature_flag_option_rule_conditions:
-            [%FeatureFlagOptionRuleCondition{} | _] = conditions
+        %Rule{
+          conditions: [%Condition{} | _] = conditions
         },
         params
       ) do
@@ -16,7 +15,7 @@ defmodule Flagex.FeatureFlags.RuleProcessor do
 
   def call(_, _), do: @default_result
 
-  defp do_call([%FeatureFlagOptionRuleCondition{} = condition | conditions], params) do
+  defp do_call([%Condition{} = condition | conditions], params) do
     case ConditionProcessor.call(condition, params) do
       {:ok, false} -> {:ok, false}
       {:ok, true} -> do_call(conditions, params)

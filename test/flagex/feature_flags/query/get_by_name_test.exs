@@ -1,8 +1,9 @@
 defmodule Flagex.FeatureFlags.Query.GetByNameTest do
   use Flagex.DataCase, async: true
 
-  alias Flagex.{Error, FeatureFlag, Repo}
+  alias Flagex.{Error, Repo}
   alias Flagex.FeatureFlags.Query.GetByName
+  alias Flagex.FeatureFlag.Schema.Flag
 
   describe "call/1" do
     test "when name doenst exist, returns an error" do
@@ -12,9 +13,9 @@ defmodule Flagex.FeatureFlags.Query.GetByNameTest do
 
     test "when name doenst exist, returns a tuple" do
       params = %{name: "my_test", status: false}
-      params |> FeatureFlag.changeset() |> Repo.insert()
+      params |> Flag.changeset() |> Repo.insert()
 
-      assert {:ok, %FeatureFlag{name: "my_test", status: false}} = GetByName.call("my_test")
+      assert {:ok, %Flag{name: "my_test", status: false}} = GetByName.call("my_test")
     end
   end
 end

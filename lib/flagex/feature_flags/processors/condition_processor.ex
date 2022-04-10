@@ -1,8 +1,8 @@
 defmodule Flagex.FeatureFlags.ConditionProcessor do
-  alias Flagex.{FeatureFlagOptionRuleCondition}
+  alias Flagex.FeatureFlag.Schema.Condition
 
   def call(
-        %FeatureFlagOptionRuleCondition{} = condition,
+        %Condition{} = condition,
         params
       ) do
     condition

@@ -3,9 +3,9 @@ defmodule Flagex.FeatureFlags.Result do
 
   defstruct [:name, :status, :active, errors: false]
 
-  alias Flagex.{FeatureFlag, FeatureFlagOption}
+  alias Flagex.FeatureFlag.Schema.{Flag, Option}
 
-  def build(%FeatureFlag{} = feature_flag) do
+  def build(%Flag{} = feature_flag) do
     %__MODULE__{
       name: feature_flag.name,
       status: feature_flag.status,
@@ -13,7 +13,7 @@ defmodule Flagex.FeatureFlags.Result do
     }
   end
 
-  def build(%FeatureFlag{} = feature_flag, %FeatureFlagOption{status: status}) do
+  def build(%Flag{} = feature_flag, %Option{status: status}) do
     %__MODULE__{
       name: feature_flag.name,
       status: status,

@@ -1,13 +1,14 @@
 defmodule FlagexWeb.FeatureFlagsControllerTest do
   use FlagexWeb.ConnCase, async: true
 
-  alias Flagex.{FeatureFlag, Repo}
+  alias Flagex.Repo
+  alias Flagex.FeatureFlag.Schema.Flag
 
   describe "show/2" do
     test "when feature flag name exists, returns a success response", %{conn: conn} do
       params = %{name: "my_test", status: false}
 
-      params |> FeatureFlag.changeset() |> Repo.insert()
+      params |> Flag.changeset() |> Repo.insert()
 
       response =
         conn

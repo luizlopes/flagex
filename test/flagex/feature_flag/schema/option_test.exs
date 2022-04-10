@@ -1,32 +1,34 @@
-defmodule Flagex.FeatureFlagOptionRuleTest do
+defmodule Flagex.FeatureFlag.Schema.OptionTest do
   use Flagex.DataCase, async: true
 
   import Flagex.Factory
 
-  alias Flagex.{FeatureFlagOptionRule}
+  alias Flagex.FeatureFlag.Schema.Option
 
   describe "changeset/1" do
     test "when all params are valid, returns a valid changeset" do
-      feature_flag_option = build(:feature_flag_option)
+      feature_flag = build(:flag)
 
       params =
-        build(:feature_flag_option_rule_params, %{
-          "feature_flag_option_id" => feature_flag_option.id
+        build(:option_params, %{
+          "status" => false,
+          "feature_flag_id" => feature_flag.id
         })
 
-      assert %Ecto.Changeset{valid?: true} = FeatureFlagOptionRule.changeset(params)
+      assert %Ecto.Changeset{valid?: true} = Option.changeset(params)
     end
 
     test "when description has four chars, returns an invalid changeset" do
-      feature_flag_option = build(:feature_flag_option)
+      feature_flag = build(:flag)
 
       params =
-        build(:feature_flag_option_rule_params, %{
+        build(:option_params, %{
           "description" => "four",
-          "feature_flag_option_id" => feature_flag_option.id
+          "feature_flag_id" => feature_flag.id,
+          "status" => false
         })
 
-      response = FeatureFlagOptionRule.changeset(params)
+      response = Option.changeset(params)
 
       assert errors_on(response) == %{description: ["should be at least 5 character(s)"]}
     end
@@ -34,12 +36,13 @@ defmodule Flagex.FeatureFlagOptionRuleTest do
     test "when empty params, returns an invalid changeset" do
       params = %{}
 
-      response = FeatureFlagOptionRule.changeset(params)
+      response = Option.changeset(params)
 
       assert errors_on(response) == %{
                description: ["can't be blank"],
                active: ["can't be blank"],
-               feature_flag_option_id: ["can't be blank"]
+               status: ["can't be blank"],
+               feature_flag_id: ["can't be blank"]
              }
     end
   end
