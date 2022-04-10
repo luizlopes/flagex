@@ -1,5 +1,5 @@
 defmodule Flagex.FeatureFlag.Builder.Result do
-  alias Flagex.FeatureFlag.Result
+  alias Flagex.FeatureFlagResult, as: Result
   alias Flagex.FeatureFlag.Schema.{Flag, Option}
 
   def build(%Flag{} = feature_flag) do

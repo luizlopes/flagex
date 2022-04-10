@@ -2,7 +2,7 @@ defmodule Flagex.FeatureFlag.Processor.FlagTest do
   use Flagex.DataCase
   import Flagex.Factory
 
-  alias Flagex.FeatureFlag.Result
+  alias Flagex.FeatureFlagResult, as: Result
   alias Flagex.FeatureFlag.Processor.Flag, as: FlagProcessor
 
   describe "call/2" do

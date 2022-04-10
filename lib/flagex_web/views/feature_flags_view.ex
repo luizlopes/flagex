@@ -1,7 +1,7 @@
 defmodule FlagexWeb.FeatureFlagsView do
   use FlagexWeb, :view
 
-  alias Flagex.FeatureFlag.Result
+  alias Flagex.FeatureFlagResult, as: Result
 
   def render("show.json", %{result: result = %Result{}}) do
     %{
