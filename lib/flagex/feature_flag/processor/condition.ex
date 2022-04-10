@@ -8,7 +8,6 @@ defmodule Flagex.FeatureFlag.Processor.Condition do
     condition
     |> prepare(params)
     |> evaluate()
-    |> handle_result()
   end
 
   defp prepare(condition, params) do
@@ -19,11 +18,18 @@ defmodule Flagex.FeatureFlag.Processor.Condition do
     {condition.condition, bindings}
   end
 
-  # TODO Call adapter
   defp evaluate({condition, bindings}) do
-    Code.eval_string(condition, bindings)
+    do_evaluate(condition, bindings)
   end
 
-  defp handle_result({true, _}), do: {:ok, true}
-  defp handle_result(_), do: {:ok, false}
+  @spec do_evaluate(String.t(), Keyword.t()) :: Tuple
+  def do_evaluate(condition, bindings) do
+    evaluator().evaluate(condition, bindings)
+  end
+
+  defp evaluator do
+    :flagex
+    |> Application.fetch_env!(__MODULE__)
+    |> Keyword.get(:code_evaluator)
+  end
 end

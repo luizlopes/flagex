@@ -28,3 +28,6 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :flagex, Flagex.FeatureFlag.Processor.Condition,
+  code_evaluator: Flagex.FeatureFlag.Evaluator.Default
