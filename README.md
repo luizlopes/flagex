@@ -1,5 +1,10 @@
 # Flagex
 
+A feature flag API.
+
+[WIP]
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
