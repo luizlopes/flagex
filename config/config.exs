@@ -53,3 +53,11 @@ import_config "#{config_env()}.exs"
 
 config :flagex, Flagex.FeatureFlag.Processor.Condition,
   code_evaluator: Flagex.FeatureFlag.Evaluator.Default
+
+config :flagex, Flagex.FeatureFlag.Handler.Command, %{
+  process_flag: [Flagex.FeatureFlag.Handler.ProcessFlag]
+}
+
+# handlers: [Flagex.FeatureFlag.Handler.ProcessFlag,
+#            Flages.FeatureFlag.Handler.CountResults,
+#            Flages.FeatureFlag.Handler.LogResults]

@@ -1,6 +1,11 @@
 defmodule Flagex.FeatureFlag.Builder.Result do
+  alias Flagex.Error
   alias Flagex.FeatureFlagResult, as: Result
   alias Flagex.FeatureFlag.Schema.{Flag, Option}
+
+  def build do
+    %Result{}
+  end
 
   def build(%Flag{} = feature_flag) do
     %Result{
@@ -9,6 +14,8 @@ defmodule Flagex.FeatureFlag.Builder.Result do
       active: true
     }
   end
+
+  def build(%Error{} = error), do: %Result{error: error}
 
   def build(%Flag{} = feature_flag, %Option{status: status}) do
     %Result{

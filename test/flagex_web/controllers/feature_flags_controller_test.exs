@@ -18,7 +18,7 @@ defmodule FlagexWeb.FeatureFlagsControllerTest do
       assert %{
                "status" => false,
                "active" => true,
-               "errors" => false,
+               "error" => nil,
                "name" => "my_test"
              } = response
     end

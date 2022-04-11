@@ -8,7 +8,7 @@ defmodule FlagexWeb.FeatureFlagsView do
       status: result.status,
       name: result.name,
       active: result.active,
-      errors: result.errors
+      error: result.error
     }
   end
 end

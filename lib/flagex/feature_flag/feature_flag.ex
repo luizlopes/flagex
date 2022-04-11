@@ -1,16 +1,11 @@
 defmodule Flagex.FeatureFlag do
-  alias Flagex.FeatureFlag.Processor.Flag, as: FlagProcessor
-  alias Flagex.FeatureFlag.Query.GetByName
-  alias Flagex.FeatureFlag.Schema.Flag
+  alias Flagex.FeatureFlag.Builder.Command, as: CommandBuilder
+  alias Flagex.FeatureFlag.Builder.Result, as: ResultBuilder
+  alias Flagex.FeatureFlag.Handler.Command, as: CommandHandler
 
   def process(feature_flag_name, params) do
-    GetByName.call(feature_flag_name)
-    |> do_process(params)
-  end
+    process_flag_command = CommandBuilder.build_process_flag(feature_flag_name, params)
 
-  defp do_process({:ok, %Flag{} = feature_flag}, params) do
-    {:ok, FlagProcessor.call(feature_flag, params)}
+    CommandHandler.call(ResultBuilder.build(), process_flag_command)
   end
-
-  defp do_process(error, _params), do: error
 end

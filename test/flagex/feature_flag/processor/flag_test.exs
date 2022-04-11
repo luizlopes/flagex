@@ -11,7 +11,7 @@ defmodule Flagex.FeatureFlag.Processor.FlagTest do
 
       result = FlagProcessor.call(feature_flag, %{})
 
-      assert %Result{name: "my_test", status: false, active: true, errors: false} = result
+      assert %Result{name: "my_test", status: false, active: true, error: nil} = result
     end
 
     test "when params is filled and FeatureFlag has no options, return feature flag result" do
@@ -19,7 +19,7 @@ defmodule Flagex.FeatureFlag.Processor.FlagTest do
 
       result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
-      assert %Result{name: "my_test", status: false, active: true, errors: false} = result
+      assert %Result{name: "my_test", status: false, active: true, error: nil} = result
     end
 
     test "when params is filled and FeatureFlag is complete, return condition result" do
@@ -30,7 +30,7 @@ defmodule Flagex.FeatureFlag.Processor.FlagTest do
 
       result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
-      assert %Result{name: "my_test", status: true, active: true, errors: false} = result
+      assert %Result{name: "my_test", status: true, active: true, error: nil} = result
     end
 
     test "when params is filled and FeatureFlag has options, return feature flag result" do
@@ -39,7 +39,7 @@ defmodule Flagex.FeatureFlag.Processor.FlagTest do
 
       result = FlagProcessor.call(feature_flag, %{"channel" => "website"})
 
-      assert %Result{name: "my_test", status: false, active: true, errors: false} = result
+      assert %Result{name: "my_test", status: false, active: true, error: nil} = result
     end
   end
 end
