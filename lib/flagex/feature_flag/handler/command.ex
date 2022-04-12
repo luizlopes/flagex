@@ -4,7 +4,7 @@ defmodule Flagex.FeatureFlag.Handler.Command do
 
   def call(%Result{} = result, %Command{type: type} = command) do
     handlers = handlers(type)
-    execute_handlers(command, result, handlers)
+    execute_handlers(result, command, handlers)
   end
 
   defp handlers(type) do
@@ -14,7 +14,7 @@ defmodule Flagex.FeatureFlag.Handler.Command do
   end
 
   defp execute_handlers(result, command, [handler | handlers]) do
-    handler.handle(command, result)
+    handler.handle(result, command)
     |> execute_handlers(command, handlers)
   end
 
