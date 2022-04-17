@@ -1,7 +1,7 @@
 defmodule Flagex.Factory do
   use ExMachina.Ecto, repo: Flagex.Repo
 
-  alias Flagex.FeatureFlag.Schema.{Flag, Option, Rule, Condition}
+  alias Flagex.FeatureFlag.Core.{Condition, Flag, Option, Rule}
 
   def flag_params_factory do
     %{

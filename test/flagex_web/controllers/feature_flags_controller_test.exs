@@ -1,8 +1,8 @@
 defmodule FlagexWeb.FeatureFlagsControllerTest do
   use FlagexWeb.ConnCase, async: true
 
+  alias Flagex.FeatureFlag.Core.Flag
   alias Flagex.Repo
-  alias Flagex.FeatureFlag.Schema.Flag
 
   describe "show/2" do
     test "when feature flag name exists, returns a success response", %{conn: conn} do

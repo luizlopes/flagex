@@ -51,13 +51,9 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
 
-config :flagex, Flagex.FeatureFlag.Processor.Condition,
-  code_evaluator: Flagex.FeatureFlag.Evaluator.Default
+config :flagex, Flagex.FeatureFlag.Core.ConditionProcessor,
+  code_evaluator: Flagex.FeatureFlag.Core.SimpleEvaluator
 
-config :flagex, Flagex.FeatureFlag.Handler.Command, %{
-  process_flag: [Flagex.FeatureFlag.Handler.ProcessFlag]
+config :flagex, Flagex.FeatureFlag.Service.GeneralHandler, %{
+  process_flag: [Flagex.FeatureFlag.Service.ProcessFlagHandler]
 }
-
-# handlers: [Flagex.FeatureFlag.Handler.ProcessFlag,
-#            Flages.FeatureFlag.Handler.CountResults,
-#            Flages.FeatureFlag.Handler.LogResults]

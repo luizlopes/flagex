@@ -1,7 +1,7 @@
 defmodule FlagexWeb.FeatureFlagsController do
   use FlagexWeb, :controller
 
-  alias Flagex.FeatureFlagResult, as: Result
+  alias Flagex.Result
 
   action_fallback FlagexWeb.FallbackController
 
