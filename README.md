@@ -1,8 +1,31 @@
 # Flagex
 
-A feature flag API.
+A feature flag and test AB API writen Elixir. [WIP]
 
-[WIP]
+## The main features of flag feature are:
+
+  * Controls feature flags
+  * Creates conditionals in execution time for evaluate feature flag state 
+  * Feature flags Rollout
+  * Counts feature flag hits and its results
+
+
+## The main features of test AB are:
+
+  * Controls the tests by an id (eg, session_id) 
+  * Returns JSON (this is useful to reproduce the response of any API calls) 
+  * Counts test hits and its results
+
+## TODO
+
+  * IMPROVE TEST COVERAGE
+  * CI/CD
+  * NEW HANDLER TO COMPUTE PROCESSED FLAGS
+  * CREATE ALL TEST AB
+  * DOCKERIZE
+  * DEPLOY
+  * LIVE VIEW FOR STATS VIEWS
+
 
 
 To start your Phoenix server:
